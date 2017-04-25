@@ -1,0 +1,8 @@
+---
+- hosts: default
+  become: yes
+  roles:
+    - { role: ansible-role-postgres-db,
+        db_name: test,
+        db_user: test,
+        db_pass: test }

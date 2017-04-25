@@ -1,0 +1,3 @@
+---
+# defaults file for postgres-db
+postgres_server_version: "9.5"

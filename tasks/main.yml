@@ -41,11 +41,11 @@
   notify:
     - restart postgres
 
-- name: "Configure {{ db_user }} remote authentication from {{ db_remote_clients }} hosts"
+- name: "Configure password remote authentication from {{ db_remote_clients }} hosts"
   lineinfile:
         backup=yes
         dest=/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
-        line='host {{ db_name}} {{ db_user }} {{ db_remote_clients }} md5'
+        line='host all all {{ db_user }} {{ db_remote_clients }} md5'
   when: db_remote_clients is defined
   notify:
     - reload postgres

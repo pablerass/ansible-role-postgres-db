@@ -34,7 +34,7 @@
 - name: "Configure listen addresses"
   lineinfile:
         backup=yes
-        dest=/etc/postgresql/{{ postgres__version }}/main/postgresql.conf
+        dest=/etc/postgresql/{{ postgres_version }}/main/postgresql.conf
         regexp='^#?listen_addresses ='
         line="listen_addresses = '*'"
   when: db_remote_clients is defined

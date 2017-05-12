@@ -45,7 +45,7 @@
   lineinfile:
         backup=yes
         dest=/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
-        line='host all all {{ db_user }} {{ db_remote_clients }} md5'
+        line='host all all {{ db_remote_clients }} md5'
   when: db_remote_clients is defined
   notify:
     - reload postgres

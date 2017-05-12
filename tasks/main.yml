@@ -24,7 +24,7 @@
 - name: "Configure {{ db_user }} local authentication"
   lineinfile:
         backup=yes
-        dest=/etc/postgresql/{{ postgres_server_version }}/main/pg_hba.conf
+        dest=/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
         insertbefore='^local\s+all\s+all\s+peer\s*$'
         regexp='local\s+{{ db_name }}\s+{{ db_user }}\s+'
         line='local {{ db_name }} {{ db_user }} md5'
@@ -34,7 +34,7 @@
 - name: "Configure listen addresses"
   lineinfile:
         backup=yes
-        dest=/etc/postgresql/{{ postgres_server_version }}/main/postgresql.conf
+        dest=/etc/postgresql/{{ postgres__version }}/main/postgresql.conf
         regexp='^#?listen_addresses ='
         line="listen_addresses = '*'"
   when: db_remote_clients is defined
@@ -44,7 +44,7 @@
 - name: "Configure {{ db_user }} remote authentication from {{ db_remote_clients }} hosts"
   lineinfile:
         backup=yes
-        dest=/etc/postgresql/9.3/main/pg_hba.conf
+        dest=/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
         line='host {{ db_name}} {{ db_user }} {{ db_remote_clients }} md5'
   when: db_remote_clients is defined
   notify:

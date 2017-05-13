@@ -9,6 +9,7 @@
   postgresql_user:
         db={{ db_name }}
         name={{ db_user }}
+        encrypted=yes
         password={{ db_pass }}
         priv=CONNECT
 
